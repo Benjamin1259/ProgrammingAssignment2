@@ -1,44 +1,48 @@
 ## Put comments here that give an overall description of what your
 ## functions do
 
-## Write a short comment describing this function
+## The makeCacheMatrix creates a cache of matrix inversion.  The benefit of of a function like this is to improve proformance on a large dataset by caching a intensive operation, rather than continually calculating running the co
+costly computation repeatedly.
 
-makeCacheMatrix <- function(x = matrix()) {
+
+makeCacheMatrix <- function(x = matrix())
+
+ {
       
         
-        inv = NULL
-        set = function(y) {
+        inv_matrix <- NULL
+        set_matrix <- function(y) {
                 
                 x <<- y
-                inv <<- NULL
+                inv_matrix <<- NULL
         }
-        get = function() x
-        setinv = function(inverse) inv <<- inverse 
-        getinv = function() inv
-        list(set=set, get=get, setinv=setinv, getinv=getinv)
+        get_matrix <- function() x
+        set_inv_matrix <- function(inverse) inv_matrix <<- inverse 
+        get_inv_matrix <- function() inv_matrix
+        list(set_matrix=set_matrix, get_matrix=get_matrix, set_inv_matrix=set_inv_matrix,  get_inv_matrix= get_inv_matrix)
 }
 
-
+## The cacheSolve function calculates the inverse of the makeCacheMatrix function listed above. 
 
 cacheSolve <- function(x, ...) {
         
-        a <- x$getinv()
+        inv_matrix <- x$get_inv_matrix()
         
        
-        if (!is.null(inv)){
+        if (!is.null(inv_matrix)){
                 
                 message("getting cached data")
-                return(a)
+                return(inv_inv_matrix)
         }
         
        
-        mat.data = x$get()
-        a <- solve(mat.data, ...)
+        data_matrix <-  x$get_inv_matrix()
+        inv_matrix <- solve(data_matrix, ...)
         
        
-        x$setinv(a)
+        x$set_inv_matrix(inv_matrix)
         
-        return(a)
+        return(inv_matrix)
 }
 
 
